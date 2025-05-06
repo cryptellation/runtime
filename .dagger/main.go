@@ -21,10 +21,10 @@ import (
 	"github.com/cryptellation/runtime/dagger/internal/dagger"
 )
 
-type RunTime struct{}
+type Runtime struct{}
 
 // Publish a new release
-func (ci *RunTime) PublishTag(
+func (ci *Runtime) PublishTag(
 	ctx context.Context,
 	sourceDir *dagger.Directory,
 	user *string,
@@ -45,7 +45,7 @@ func (ci *RunTime) PublishTag(
 }
 
 // Check returns a container that runs the checker.
-func (mod *RunTime) Check(
+func (mod *Runtime) Check(
 	sourceDir *dagger.Directory,
 ) *dagger.Container {
 	c := dag.Container().From("ghcr.io/cryptellation/checker")
@@ -54,7 +54,7 @@ func (mod *RunTime) Check(
 }
 
 // Lint runs golangci-lint on the source code in the given directory.
-func (mod *RunTime) Lint(sourceDir *dagger.Directory) *dagger.Container {
+func (mod *Runtime) Lint(sourceDir *dagger.Directory) *dagger.Container {
 	c := dag.Container().
 		From("golangci/golangci-lint:v1.62.0").
 		WithMountedCache("/root/.cache/golangci-lint", dag.CacheVolume("golangci-lint"))
@@ -65,7 +65,7 @@ func (mod *RunTime) Lint(sourceDir *dagger.Directory) *dagger.Container {
 }
 
 // UnitTests returns a container that runs the unit tests.
-func (mod *RunTime) UnitTests(sourceDir *dagger.Directory) *dagger.Container {
+func (mod *Runtime) UnitTests(sourceDir *dagger.Directory) *dagger.Container {
 	c := dag.Container().From("golang:" + goVersion() + "-alpine")
 	return mod.withGoCodeAndCacheAsWorkDirectory(c, sourceDir).
 		WithExec([]string{"sh", "-c",
@@ -77,7 +77,7 @@ func goVersion() string {
 	return runtime.Version()[2:]
 }
 
-func (mod *RunTime) withGoCodeAndCacheAsWorkDirectory(
+func (mod *Runtime) withGoCodeAndCacheAsWorkDirectory(
 	c *dagger.Container,
 	sourceDir *dagger.Directory,
 ) *dagger.Container {
