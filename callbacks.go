@@ -23,18 +23,18 @@ type CallbackWorkflow struct {
 // OnInitCallbackWorkflowParams is the parameters of the
 // OnInitCallbackWorkflow callback workflow.
 type OnInitCallbackWorkflowParams struct {
-	RunCtx Context
+	Run Run
 }
 
 // OnNewPricesCallbackWorkflowParams is the parameters of the
 // OnNewPricesCallbackWorkflow callback workflow.
 type OnNewPricesCallbackWorkflowParams struct {
-	Run   Context
+	Run   Run
 	Ticks []tick.Tick
 }
 
 // OnExitCallbackWorkflowParams is the parameters of the
 // OnExitCallbackWorkflow callback workflow.
 type OnExitCallbackWorkflowParams struct {
-	Run Context
+	Run Run
 }
