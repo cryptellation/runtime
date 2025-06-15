@@ -3,7 +3,7 @@ module github.com/cryptellation/runtime
 go 1.23.8
 
 require (
-	github.com/cryptellation/candlesticks v1.0.1
+	github.com/cryptellation/candlesticks v1.0.4
 	github.com/cryptellation/ticks v1.0.1
 	github.com/google/uuid v1.6.0
 	github.com/stretchr/testify v1.10.0
