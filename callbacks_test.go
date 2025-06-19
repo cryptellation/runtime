@@ -29,8 +29,7 @@ func (suite *CallbacksSuite) TestCallbackWorkflowValidate() {
 		TaskQueueName: "test-queue",
 	}
 	err = emptyNameCallback.Validate()
-	suite.Require().Error(err)
-	suite.Require().Equal(ErrEmptyWorkflowName, err)
+	suite.Require().ErrorIs(err, ErrEmptyWorkflowName)
 
 	// Test empty task queue name
 	emptyQueueCallback := CallbackWorkflow{
@@ -38,8 +37,7 @@ func (suite *CallbacksSuite) TestCallbackWorkflowValidate() {
 		TaskQueueName: "",
 	}
 	err = emptyQueueCallback.Validate()
-	suite.Require().Error(err)
-	suite.Require().Equal(ErrEmptyTaskQueueName, err)
+	suite.Require().ErrorIs(err, ErrEmptyTaskQueueName)
 
 	// Test both empty
 	emptyBothCallback := CallbackWorkflow{
@@ -47,8 +45,7 @@ func (suite *CallbacksSuite) TestCallbackWorkflowValidate() {
 		TaskQueueName: "",
 	}
 	err = emptyBothCallback.Validate()
-	suite.Require().Error(err)
-	suite.Require().Equal(ErrEmptyWorkflowName, err) // First error encountered
+	suite.Require().ErrorIs(err, ErrEmptyWorkflowName) // First error encountered
 }
 
 func (suite *CallbacksSuite) TestCallbacksValidateValid() {
@@ -88,8 +85,7 @@ func (suite *CallbacksSuite) TestCallbacksValidateInvalidOnInit() {
 		},
 	}
 	err := invalidInitCallbacks.Validate()
-	suite.Require().Error(err)
-	suite.Require().Equal(ErrEmptyWorkflowName, err)
+	suite.Require().ErrorIs(err, ErrEmptyWorkflowName)
 }
 
 func (suite *CallbacksSuite) TestCallbacksValidateInvalidOnNewPrices() {
@@ -109,8 +105,7 @@ func (suite *CallbacksSuite) TestCallbacksValidateInvalidOnNewPrices() {
 		},
 	}
 	err := invalidPricesCallbacks.Validate()
-	suite.Require().Error(err)
-	suite.Require().Equal(ErrEmptyTaskQueueName, err)
+	suite.Require().ErrorIs(err, ErrEmptyTaskQueueName)
 }
 
 func (suite *CallbacksSuite) TestCallbacksValidateInvalidOnExit() {
@@ -130,6 +125,5 @@ func (suite *CallbacksSuite) TestCallbacksValidateInvalidOnExit() {
 		},
 	}
 	err := invalidExitCallbacks.Validate()
-	suite.Require().Error(err)
-	suite.Require().Equal(ErrEmptyWorkflowName, err)
+	suite.Require().ErrorIs(err, ErrEmptyWorkflowName)
 }
