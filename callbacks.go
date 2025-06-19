@@ -2,6 +2,7 @@ package runtime
 
 import (
 	"errors"
+	"fmt"
 	"time"
 
 	"github.com/cryptellation/ticks/pkg/tick"
@@ -24,13 +25,13 @@ type Callbacks struct {
 // Validate validates the callbacks.
 func (c Callbacks) Validate() error {
 	if err := c.OnInitCallback.Validate(); err != nil {
-		return err
+		return fmt.Errorf("onInitCallback validation failed: %w", err)
 	}
 	if err := c.OnNewPricesCallback.Validate(); err != nil {
-		return err
+		return fmt.Errorf("onNewPricesCallback validation failed: %w", err)
 	}
 	if err := c.OnExitCallback.Validate(); err != nil {
-		return err
+		return fmt.Errorf("onExitCallback validation failed: %w", err)
 	}
 	return nil
 }
