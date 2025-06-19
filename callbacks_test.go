@@ -51,7 +51,7 @@ func (suite *CallbacksSuite) TestCallbackWorkflowValidate() {
 	suite.Require().Equal(ErrEmptyWorkflowName, err) // First error encountered
 }
 
-func (suite *CallbacksSuite) TestCallbacksValidate() {
+func (suite *CallbacksSuite) TestCallbacksValidateValid() {
 	// Test valid callbacks
 	validCallbacks := Callbacks{
 		OnInitCallback: CallbackWorkflow{
@@ -69,7 +69,9 @@ func (suite *CallbacksSuite) TestCallbacksValidate() {
 	}
 	err := validCallbacks.Validate()
 	suite.Require().NoError(err)
+}
 
+func (suite *CallbacksSuite) TestCallbacksValidateInvalidOnInit() {
 	// Test invalid OnInitCallback
 	invalidInitCallbacks := Callbacks{
 		OnInitCallback: CallbackWorkflow{
@@ -85,10 +87,12 @@ func (suite *CallbacksSuite) TestCallbacksValidate() {
 			TaskQueueName: "test-queue",
 		},
 	}
-	err = invalidInitCallbacks.Validate()
+	err := invalidInitCallbacks.Validate()
 	suite.Require().Error(err)
 	suite.Require().Equal(ErrEmptyWorkflowName, err)
+}
 
+func (suite *CallbacksSuite) TestCallbacksValidateInvalidOnNewPrices() {
 	// Test invalid OnNewPricesCallback
 	invalidPricesCallbacks := Callbacks{
 		OnInitCallback: CallbackWorkflow{
@@ -104,10 +108,12 @@ func (suite *CallbacksSuite) TestCallbacksValidate() {
 			TaskQueueName: "test-queue",
 		},
 	}
-	err = invalidPricesCallbacks.Validate()
+	err := invalidPricesCallbacks.Validate()
 	suite.Require().Error(err)
 	suite.Require().Equal(ErrEmptyTaskQueueName, err)
+}
 
+func (suite *CallbacksSuite) TestCallbacksValidateInvalidOnExit() {
 	// Test invalid OnExitCallback
 	invalidExitCallbacks := Callbacks{
 		OnInitCallback: CallbackWorkflow{
@@ -123,7 +129,7 @@ func (suite *CallbacksSuite) TestCallbacksValidate() {
 			TaskQueueName: "test-queue",
 		},
 	}
-	err = invalidExitCallbacks.Validate()
+	err := invalidExitCallbacks.Validate()
 	suite.Require().Error(err)
 	suite.Require().Equal(ErrEmptyWorkflowName, err)
 }
