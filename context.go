@@ -6,8 +6,8 @@ import (
 	"github.com/google/uuid"
 )
 
-// Run is the context of a run that contains several information about the run.
-type Run struct {
+// Context is the context of a run that contains several information about the run.
+type Context struct {
 	// ID is the ID of the run that corresponds to a backtest, a forwardtest or a live run.
 	ID uuid.UUID
 	// Mode is the mode of the run (backtests, forwardtest or live run).
