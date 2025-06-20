@@ -29,6 +29,7 @@ type OnExitCallbackWorkflowParams struct {
 
 // Runnable is the interface for a struct that can be run on Cryptellation.
 type Runnable interface {
+	Name() string
 	OnInit(ctx workflow.Context, params OnInitCallbackWorkflowParams) error
 	OnNewPrices(ctx workflow.Context, params OnNewPricesCallbackWorkflowParams) error
 	OnExit(ctx workflow.Context, params OnExitCallbackWorkflowParams) error
