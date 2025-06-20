@@ -3,8 +3,6 @@ package runtime
 import (
 	"errors"
 	"time"
-
-	"github.com/cryptellation/ticks/pkg/tick"
 )
 
 var (
@@ -51,23 +49,4 @@ func (cw CallbackWorkflow) Validate() error {
 		return ErrEmptyTaskQueueName
 	}
 	return nil
-}
-
-// OnInitCallbackWorkflowParams is the parameters of the
-// OnInitCallbackWorkflow callback workflow.
-type OnInitCallbackWorkflowParams struct {
-	Run Run
-}
-
-// OnNewPricesCallbackWorkflowParams is the parameters of the
-// OnNewPricesCallbackWorkflow callback workflow.
-type OnNewPricesCallbackWorkflowParams struct {
-	Run   Run
-	Ticks []tick.Tick
-}
-
-// OnExitCallbackWorkflowParams is the parameters of the
-// OnExitCallbackWorkflow callback workflow.
-type OnExitCallbackWorkflowParams struct {
-	Run Run
 }
