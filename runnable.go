@@ -29,27 +29,28 @@ type OnExitCallbackWorkflowParams struct {
 
 // Runnable is the interface for a struct that can be run on Cryptellation.
 type Runnable interface {
+	Name() string
 	OnInit(ctx workflow.Context, params OnInitCallbackWorkflowParams) error
 	OnNewPrices(ctx workflow.Context, params OnNewPricesCallbackWorkflowParams) error
 	OnExit(ctx workflow.Context, params OnExitCallbackWorkflowParams) error
 }
 
 // RegisterRunnable registers a runnable to a worker and returns the callbacks.
-func RegisterRunnable(w worker.Worker, taskQueue string, name string, r Runnable) Callbacks {
+func RegisterRunnable(w worker.Worker, taskQueue string, r Runnable) Callbacks {
 	// Register OnInitCallback
-	onInitCallbackWorkflowName := fmt.Sprintf("%s-OnInit", name)
+	onInitCallbackWorkflowName := fmt.Sprintf("%s-OnInit", r.Name())
 	w.RegisterWorkflowWithOptions(r.OnInit, workflow.RegisterOptions{
 		Name: onInitCallbackWorkflowName,
 	})
 
 	// Register OnNewPricesCallback
-	onNewPricesCallbackWorkflowName := fmt.Sprintf("%s-OnNewPrices", name)
+	onNewPricesCallbackWorkflowName := fmt.Sprintf("%s-OnNewPrices", r.Name())
 	w.RegisterWorkflowWithOptions(r.OnNewPrices, workflow.RegisterOptions{
 		Name: onNewPricesCallbackWorkflowName,
 	})
 
 	// Register OnExitCallback
-	onExitCallbackWorkflowName := fmt.Sprintf("%s-OnExit", name)
+	onExitCallbackWorkflowName := fmt.Sprintf("%s-OnExit", r.Name())
 	w.RegisterWorkflowWithOptions(r.OnExit, workflow.RegisterOptions{
 		Name: onExitCallbackWorkflowName,
 	})
