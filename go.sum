@@ -10,6 +10,8 @@ github.com/cryptellation/ticks v1.0.1 h1:ejJqbfBPY72SaS+aQlGAfBEc4lDWY1zf44GLt1w
 github.com/cryptellation/ticks v1.0.1/go.mod h1:sJ8aUr7QDX3YmlCrEHl9clvepTgzjaV6k8e1kdFIuqw=
 github.com/cryptellation/timeseries v1.0.2 h1:Vdrp4AZ7yfBlyANtU7vT9SptBQs8vdjXyjRnkX0C7iA=
 github.com/cryptellation/timeseries v1.0.2/go.mod h1:SxqmKOjn/l5AXZGaLGA47oScXzpTcXtnmfom88uZdaY=
+github.com/cryptellation/timeseries v1.2.0 h1:x90TnFhE3H4zPWEgLLekPMG7t611cnFvNU9DnFyCiD0=
+github.com/cryptellation/timeseries v1.2.0/go.mod h1:SxqmKOjn/l5AXZGaLGA47oScXzpTcXtnmfom88uZdaY=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
